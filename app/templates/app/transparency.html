@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Transparency
+{% endblock%}
+
+{% block content %}
+
+<!--  bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--transparency  section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: bold;" class=" text-center pt-5 pb-3 text-primary">नेपाल तण्डुकार समाजको हालसम्मको कुल आय-व्यय विवरण</h2>
+		<p>
+			नोट: केही सहयोगी दाताहरुको अनुरोधमा उहाँहरुको नाम यस प्रतिवेदनमा सार्वजनिक गरिएको छैन । यद्यपि आधिकारिक निकायबाट माग भएको अवस्थामा सम्पूर्ण विवरणहरु उपलब्ध गराउन सकिनेछ ।
+		</p>
+	</div>
+
+<!-- excel emmbed section start-->
+	<div class="row">
+		<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTF8zeO833nzh3mflrH5TMrMMBOgbeaAr6XpbdM1R2abhRwUl4CVJGrYRWCNfEUrG_k20PGv3-ehxik/pubhtml?widget=true&amp;headers=false" height="550px"></iframe>
+	</div>
+	<!-- end excel emmbeded-->
+
+
+
+</div>
+<!-- end transparency section-->
+
+
+{% endblock %}

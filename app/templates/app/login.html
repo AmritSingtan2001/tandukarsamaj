@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+login
+{% endblock %}
+{% block content %}
+
+<!--  bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--login section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center p-5 text-primary">Login Form</h2>
+		<div class="col-12 col-sm-12 col-md-3">
+		</div>
+		<div class="col-12 col-sm-12 col-md-6">
+			<form>
+			  <div class="mb-3">
+
+			    <label for="exampleInputEmail1" class="form-label">Mobile Number Or Email *</label>
+			   <div class="d-flex">
+			   	 <input type="number" class="form-control" id="exampleInputEmail1" value="+ 977" placeholder="+ 977" disabled style="border-color: black; width: 100px;">
+			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="border-color: black;">
+			   </div>
+			  </div>
+			  <div class="mb-3">
+			    <label for="exampleInputPassword1" class="form-label">Password *</label>
+			    <input type="password" class="form-control" id="exampleInputPassword1" style="border-color: black;">
+			  </div>
+			  <div class="mb-3 form-check d-flex justify-content-between">
+			    <div>
+			    	<input type="checkbox" class="form-check-input" id="exampleCheck1">
+			    	<label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+			    </div>
+			    <div>
+			    	<a href="#" class=" text-info " style="text-decoration:none;">Lost Password</a>
+			    </div>
+			  </div>
+			  <button type="submit" class="btn btn-info text-white">Login</button>
+			  <button type="submit" class="btn btn-secondary"><a href="{% url 'registration' %}" style="text-decoration:none; color:white;">Register</a></button>
+			</form>
+		</div>
+
+		<div class="col-12 col-sm-12 col-md-3">
+		</div>
+
+
+	</div>
+</div>
+<br>
+<br>
+<!-- end login section-->
+
+{% endblock %}

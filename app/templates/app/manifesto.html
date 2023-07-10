@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+manifeston 
+
+{% endblock %}
+{% block content %}
+
+
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5  text-primary">Manifesto</h2>
+		
+	</div>
+</div>
+</div>
+<!-- end about section-->
+<style>
+	.abc{
+		height: 100%;
+		margin: 0;
+		overflow: hidden;
+	}
+	.wrapper {
+		align-items: center;
+		display: flex;
+		height: 90%;
+		justify-content: center;
+		margin: 5%;
+		width: 90%;
+	  }
+	  
+	  .aspect {
+		padding-bottom: 70%;
+		position: relative;
+		width: 100%;
+	  }
+	  
+	  .aspect-inner {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+	  }
+	  
+	  .flipbook {
+		height: 100%;
+		transition: margin-left 0.25s ease-out;
+		width: 100%;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	  }
+	  
+	  .flipbook .page {
+		height: 100%;
+		width: 100%;
+	  }
+	  
+	  .flipbook .page img {
+		max-width: 100%;
+		height: 100%;
+	  }
+</style>
+
+<div class="container">
+	<div class="row abc">
+		<div class="col-12 col-sm-12 col-md-12">
+			<div class="wrapper">
+				<div class="aspect">
+				  <div class="aspect-inner">
+					<div class="flipbook" id="flipbook">
+					{% for item in  manifestos %}
+					  <div class="page"><img src="{{item.image.url}}" draggable="false" alt="" /></div>
+					{% endfor %}
+					
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  
+		</div>
+	</div>
+</div>
+
+
+<!-- end about section -->
+
+
+{% endblock %}

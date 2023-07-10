@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+videos
+{% endblock %}
+{% block content %}
+
+<!--  bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--video section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center p-5 text-primary">Video Gallery</h2>
+	</div>
+
+	<!-- video section -->
+	<div class="row">
+		{% for video in videos %}
+		<div class="col-12 col-sm-12 col-md-6 col-lg-6 pb-4">
+			<iframe width="100%" height="315" src="{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<b class="pt-2 pb-3">
+				{{video.discriptions|safe}}
+			</b>
+		</div>
+		{% endfor %}
+
+		
+	</div>
+	<!-- end video box section-->
+</div>
+<!-- end video section-->
+
+
+
+{% endblock %}

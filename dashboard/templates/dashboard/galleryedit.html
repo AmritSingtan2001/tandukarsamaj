@@ -1,0 +1,216 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}
+Edit Gallery
+{% endblock %}
+{% block content %}
+
+
+
+<div class="main-content">
+    <div class="card">
+        
+        {% if messages %}
+        {% for msg in messages %}
+            {% if msg.tags == 'error' %}
+            
+
+            <div class="alert alert-danger alert-dismissible show fade">
+              <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                  <span>×</span>
+                </button>
+                {{msg.message}}
+              </div>
+            </div>
+
+            {% elif msg.tags == 'warning' %}
+            <div class="alert alert-warning alert-dismissible show fade">
+              <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                  <span>×</span>
+                </button>
+                {{msg.message}}
+              </div>
+            </div>
+
+            {% elif msg.tags == 'info' %}
+            <div class="alert alert-info alert-dismissible show fade">
+              <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                  <span>×</span>
+                </button>
+                {{msg.message}}
+              </div>
+            </div>
+
+
+            {% else %}
+            <div class="alert alert-success alert-dismissible show fade">
+              <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                  <span>×</span>
+                </button>
+                {{msg.message}}
+              </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+      </div>
+    <section class="section">
+      <div class="section-body">
+        <div class="row">
+            {% for item in images%}
+            <div class="col-6 col-md-3 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="chocolat-parent">
+                        <a href="{{item.image.url}}" class="chocolat-image"  title="Just an example">
+                            <div data-crop-image="285">
+                            <img alt="image" src="{{item.image.url}}" style="height:300px; width:100%; object-fit:cover;" class="img-fluid ">
+                            </div>
+                        </a>
+                        </div>
+                        
+                    </div>
+                   
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModel{{item.id}}">Delete</button>
+                    
+                </div>
+            </div>
+            {% endfor %}
+         
+        </div>
+     
+      </div>
+    </section>
+       
+    
+
+        <!-- delete member-->
+        {% for item  in  images %}
+        <div class="modal fade" id="deleteModel{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   
+                    <form class="" method="post" action="{% url 'dashboard:deleteimage' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden"  value="{{item.id}}" name="id">
+                        <input type="hidden" value="{{item.title}}" name="img_slug">
+                        <h4 class="text-danger">Are you sure?</h4>
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    <div class="settingSidebar">
+      <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+      </a>
+      <div class="settingSidebar-body ps-container ps-theme-default">
+        <div class=" fade show active">
+          <div class="setting-panel-header">Setting Panel
+          </div>
+          <div class="p-15 border-bottom">
+            <h6 class="font-medium m-b-10">Select Layout</h6>
+            <div class="selectgroup layout-color w-50">
+              <label class="selectgroup-item">
+                <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                <span class="selectgroup-button">Light</span>
+              </label>
+              <label class="selectgroup-item">
+                <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                <span class="selectgroup-button">Dark</span>
+              </label>
+            </div>
+          </div>
+          <div class="p-15 border-bottom">
+            <h6 class="font-medium m-b-10">Sidebar Color</h6>
+            <div class="selectgroup selectgroup-pills sidebar-color">
+              <label class="selectgroup-item">
+                <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
+                <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                  data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+              </label>
+              <label class="selectgroup-item">
+                <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
+                <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                  data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+              </label>
+            </div>
+          </div>
+          <div class="p-15 border-bottom">
+            <h6 class="font-medium m-b-10">Color Theme</h6>
+            <div class="theme-setting-options">
+              <ul class="choose-theme list-unstyled mb-0">
+                <li title="white" class="active">
+                  <div class="white"></div>
+                </li>
+                <li title="cyan">
+                  <div class="cyan"></div>
+                </li>
+                <li title="black">
+                  <div class="black"></div>
+                </li>
+                <li title="purple">
+                  <div class="purple"></div>
+                </li>
+                <li title="orange">
+                  <div class="orange"></div>
+                </li>
+                <li title="green">
+                  <div class="green"></div>
+                </li>
+                <li title="red">
+                  <div class="red"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-15 border-bottom">
+            <div class="theme-setting-options">
+              <label class="m-b-0">
+                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                  id="mini_sidebar_setting">
+                <span class="custom-switch-indicator"></span>
+                <span class="control-label p-l-10">Mini Sidebar</span>
+              </label>
+            </div>
+          </div>
+          <div class="p-15 border-bottom">
+            <div class="theme-setting-options">
+              <label class="m-b-0">
+                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                  id="sticky_header_setting">
+                <span class="custom-switch-indicator"></span>
+                <span class="control-label p-l-10">Sticky Header</span>
+              </label>
+            </div>
+          </div>
+          <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+            <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
+              <i class="fas fa-undo"></i> Restore Default
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

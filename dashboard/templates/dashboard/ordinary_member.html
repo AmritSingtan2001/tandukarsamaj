@@ -1,0 +1,175 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}
+Ordinary Member
+{% endblock %}
+{% block content %}
+
+
+
+<!-- table start-->
+<div class="main-content">
+    <section class="section">
+      <div class="section-body">
+       
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>Our Ordinary Member's</h4>
+                
+                <div class="card-header-form">
+                  
+                  
+                </div>
+  
+              </div>
+              
+              {% if messages %}
+              {% for msg in messages %}
+                  {% if msg.tags == 'error' %}
+                  
+
+                  <div class="alert alert-danger alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+
+                  {% elif msg.tags == 'warning' %}
+                  <div class="alert alert-warning alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+
+                  {% elif msg.tags == 'info' %}
+                  <div class="alert alert-info alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+
+
+                  {% else %}
+                  <div class="alert alert-success alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+            {% endif %}
+            
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>Full name </th>
+                      <th>Phone Number</th>
+                      <th>Father Name</th>
+                      <th>Mother name </th>
+                      <th>Permanent Address</th>
+                      <th>Country  </th>
+                      <th>Status  </th>
+                      <th>Action</th>
+                    </tr>
+                    {% for item in ordinary_member %}
+                    <tr class="pt-4">
+                      <td class="p-0 text-center">
+                        {{item.fullname}}
+                      </td>
+                      <td>{{item.phone_number}}</td>
+                      
+
+                      <td >
+                        {{item.father_name}}
+                      </td>
+                      <td class="p-0 text-center">
+                        {{item.mother_name}}
+                      </td>
+                      <td>
+                        {{item.permanent_address}}
+                      </td>
+                      <td >
+                        {{item.country}}
+                      </td>
+                      <td >
+                        {{item.status}}
+                      </td>
+                     
+                      <td class="">
+                        <form method="post" action="{% url 'dashboard:unverifed_details' %}">
+                          {% csrf_token %}
+                          <input type="hidden" name="memberid" value="{{item.id}}">
+                        <button type="submit" class="btn btn-success">
+                        <i class="fas fa-pen"></i>
+                        </button>
+                        </form>
+
+                       
+
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModel{{item.id}}">
+                          <i class="fas fa-trash "></i>
+                      </button>
+
+                        
+                      </td>
+                    </tr>
+                    {% endfor %}
+  
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+  </div>
+  <!-- end table-->
+
+   <!-- delete member-->
+   {% for member  in  ordinary_member %}
+   <div class="modal fade" id="deleteModel{{member.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+           <div class="modal-body">
+               <form class="" method="post" action="{% url 'dashboard:unordinary_delete' %}" enctype="multipart/form-data">
+                   {% csrf_token %}
+                   <input type="hidden"  value="{{member.id}}" name="memberid">
+                   <h4 class="text-warning">Are you sure?</h4>
+                   <div class="modal-footer bg-whitesmoke br">
+                       <button type="submit" class="btn btn-primary">Yes</button>
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   </div>
+                 </form>
+           </div>
+           
+           </div>
+       </div>
+   </div>
+   {% endfor %}
+
+{% endblock %}

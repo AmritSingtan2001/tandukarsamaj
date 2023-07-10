@@ -1,0 +1,246 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}
+Branch
+{% endblock %}
+{% block content %}
+
+<!-- table start-->
+<div class="main-content">
+  <section class="section">
+    <div class="section-body">
+     
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Branch List </h4>
+              
+              <div class="card-header-form">
+                
+                
+              </div>
+
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicModal1001">
+                <i class="fas fa-add ">Add</i>
+                </button>
+
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tr>
+                    <th class="text-center">Branch Name In English </th>
+                    <th class="text-center">Branch Name In Nepali </th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                  <tr>
+                    {% if messages %}
+                    {% for msg in messages %}
+                        {% if msg.tags == 'error' %}
+                        
+            
+                        <div class="alert alert-danger alert-dismissible show fade">
+                          <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                              <span>×</span>
+                            </button>
+                            {{msg.message}}
+                          </div>
+                        </div>
+            
+                        {% elif msg.tags == 'warning' %}
+                        <div class="alert alert-warning alert-dismissible show fade">
+                          <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                              <span>×</span>
+                            </button>
+                            {{msg.message}}
+                          </div>
+                        </div>
+            
+                        {% elif msg.tags == 'info' %}
+                        <div class="alert alert-info alert-dismissible show fade">
+                          <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                              <span>×</span>
+                            </button>
+                            {{msg.message}}
+                          </div>
+                        </div>
+            
+            
+                        {% else %}
+                        <div class="alert alert-success alert-dismissible show fade">
+                          <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
+                              <span>×</span>
+                            </button>
+                            {{msg.message}}
+                          </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                  </tr>
+                  {% for item in branchlist %}
+                  <tr>
+                   
+                    <td class="text-center">{{item.branch_name_nepali}}</td>
+                    
+                    <td class="text-center">{{item.branch_name_english}}</td>
+                   
+                    <td class="text-center"> 
+
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicModal{{item.id}}">
+                        <i class="fas fa-pen"></i>
+                    </button>
+
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModel{{item.id}}">
+                        <i class="fas fa-trash "></i>
+                    </button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+                  
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+
+
+   <!-- delete member-->
+   {% for branch  in  branchlist %}
+   <div class="modal fade" id="deleteModel{{branch.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+           </div>
+           <div class="modal-body">
+               <form class="" method="post" action="{% url  'dashboard:deletebranch' %}" enctype="multipart/form-data">
+                   {% csrf_token %}
+                   <input type="hidden"  value="{{branch.id}}" name="branchid">
+                   <h4 class="text-warning">Are you sure?</h4>
+                   <div class="modal-footer bg-whitesmoke br">
+                       <button type="submit" class="btn btn-primary">Yes</button>
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   </div>
+                 </form>
+           </div>
+           
+           </div>
+       </div>
+   </div>
+   {% endfor %}
+
+
+
+
+   
+    <!-- add new member -->
+    <div class="modal fade" id="basicModal1001" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Branch </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" method="post" action="{% url 'dashboard:branchlist' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" placeholder="Branch Name in Nepali" name="branch_name_english">
+                         </div>
+
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" placeholder="Branch Name in English" name="branch_name_nepali">
+                         </div>
+
+                       
+                    </div>
+                    
+                        
+                        
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- basic modal -->
+    {% for branch  in  branchlist %}
+    <div class="modal fade" id="basicModal{{branch.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              
+                <form class="" method="post" action="{% url 'dashboard:editbranch' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="hidden"  value="{{branch.id}}" name="branchid">
+
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" placeholder="Branch Name in English" name="branch_name_english" value="{{branch.branch_name_english}}">
+                         </div>
+
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" placeholder="Branch Name in Nepali" name="branch_name_nepali" value="{{branch.branch_name_nepali}}">
+                         </div>
+                    </div>
+                    
+                        
+                        
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+  
+</div>
+<!-- end table-->
+
+
+
+{% endblock %}

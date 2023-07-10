@@ -1,0 +1,152 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+registration 
+{% endblock %}
+{% block content %}
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--registation form  section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 text-primary">Membership Application Form</h2>
+		
+		
+	</div>
+	<div class="row">
+		{% comment %} <div class="col-12 col-sm-12 col-md-6 justify-content-center d-none d-sm-block">
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGB1R9AEHvilaV_C9vWZ_-TFUGnKuS6Gb2DA&usqp=CAU" class="img-fluid">
+		</div>  {% endcomment %}
+
+
+		<div class="col-12 col-sm-12 col-md-12">
+			{% if messages %}
+				{% for msg in messages %}
+					{% if msg.tags == 'error' %}
+					<div class="alert alert-danger alert-dismissable fade show text-start">
+						<i class="bi bi-exclamation-triangle-fill me-2"></i>
+						{{msg.message}}
+						<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+					{% elif msg.tags == 'warning' %}
+					<div class="alert alert-warning alert-dismissable fade show text-start">
+						<i class="bi bi-exclamation-triangle-fill me-2"></i>
+						{{msg.message}}
+						<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+
+					</div>
+					{% elif msg.tags == 'success' %}
+					<div class="alert alert-success alert-dismissable fade show text-start">
+						<i class="bi bi-check-square  me-2" width="24" height="24" role="img" aria-label="Success:"></i>
+						{{msg.message}}
+						<button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+
+					</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<form method="post" action ="{% url 'registration'  %}"  enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="row">
+				  <div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					  <label>Full Name *</label>
+					<input type="text" name="fullname" class="form-control" placeholder="Full Name" aria-label="First Name" style="border-color: black; " required>
+				  </div>
+				  <div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					  <label>Phone Number *</label>
+					<input type="tel" name="number" class="form-control" placeholder="Phone Number" aria-label="Phone Number" style="border-color: black;" required>
+				  </div>
+
+				  <div class="col-6 col-sm-6 col-md-4 col-lg-4  pt-3 ps-3">
+					  <label>E-mail *</label>
+					<input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" style="border-color: black;" required>
+				  </div>
+				
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3">
+					<label>Grand Father Name *</label>
+					<input type="text" name ="grandfathername" class="form-control" placeholder="Grand Father Name" aria-label="fathername" style="border-color: black;" required>
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3">
+						<label>Father Name *</label>
+					<input type="text" name ="fathername" class="form-control" placeholder="Father Name" aria-label="fathername" style="border-color: black;" required>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Mother Name *</label>
+				  <input type="text" name="mothername" class="form-control" placeholder="Mother Name" aria-label="mothername" style="border-color: black;" required>
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Son Name</label>
+					  <input type="text" name="sonname" class="form-control" placeholder="Son" aria-label="son" style="border-color: black;">
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Daughter Name</label>
+					  <input type="text"  name ="daughtername" class="form-control" placeholder="Daughter Name" aria-label="daughter" style="border-color: black;">
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Temporary Address *</label>
+					  <input type="text" class="form-control" placeholder="Temporary Address " aria-label="tempaddress" name="tempaddress" style="border-color: black;" required>
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Permanent Address *</label>
+					  <input type="text" class="form-control" placeholder="Permanent Address " aria-label="peraddress" name="per_address" style="border-color: black;" required>
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Country</label>
+					  <input type="text" name="country" class="form-control" placeholder="Country" aria-label="countryname" style="border-color: black;" required>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Qualification</label>
+					  <input type="text" name="qualification" class="form-control" placeholder="Qualification" aria-label="qualification" style="border-color: black;">
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Choose Image</label>
+					  <input type="file" name="image" accept=".png, .jpg, .jpeg, .JPG, .JPEG, .PNG .doc "  class="form-control" placeholder="image" aria-label="image" style="border-color: black;" required>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Citizenship or License or Birth Certificate *</label>
+					  <input type="file" name="document" accept=".png, .jpg, .jpeg, .JPG, .JPEG, .PNG .doc "  class="form-control" placeholder="Documents" aria-label="document" style="border-color: black;" required>
+				</div>
+
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-4 pt-3 ps-3 ">
+					<label>Member type*</label>
+					<select name="membertype" class="form-control" style="border-color: black;" required> 
+						<option selected="selected" disabled >--- Select ---</option>
+						<option value="life time" >Life Time Member</option>
+						<option value= "ordinary" >Ordinary Member</option>
+					</select>
+				</div>
+
+
+				</div>
+				<div class="d-flex justify-content-center mt-4">
+					<button type="Submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+		</div>
+
+
+		
+	</div>
+
+</div>
+<br>
+<br>
+<!-- end registrations section-->
+
+
+{% endblock %}

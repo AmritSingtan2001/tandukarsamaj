@@ -1,0 +1,75 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Branch List
+{% endblock %}
+{% block content %}
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 text-primary">Branch List</h2>
+		<b class="text-center p-2">Nepal Tandukar Socity has the following Branch.</b>
+		
+	</div>
+
+
+
+	<!-- member section start -->
+
+    <div class="row pt-5">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Branch Name in English</th>
+                <th scope="col">Branch Name in Nepali</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in branchlist%}
+              <tr>
+                <td>{{item.branch_name_nepali}}</td>
+                <td>{{item.branch_name_english}}</td>
+              </tr>
+              {% endfor %}
+              
+             
+            </tbody>
+          </table>
+    </div>
+
+
+
+	<div class="row pt-5">
+        {% for member in ordinary_member %}
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
+                <img class="img-fluid rounded-circle" src="{{member.image.url}}" style="height:150px; width: 150px;  object-fit: cover; " >
+                <br>
+                <b class="p-4">{{member.fullname}}</b>
+                <p>
+                    
+                +977-{{member.phone_number}}</p>
+        </div>
+        {% endfor %}
+		
+
+	</div>
+	<!-- end member section-->
+
+
+</div>
+
+
+
+
+
+{% endblock %}

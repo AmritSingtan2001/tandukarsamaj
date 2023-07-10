@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Executive Members
+{% endblock %}
+{% block content %}
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 text-primary">Executive Members</h2>
+		<b class="text-center p-2">Nepal Tandukar Socity has the following Executive Members.</b>
+		
+	</div>
+
+	<!-- member section start -->
+	<div class="row pt-5">
+		{% for member in members %}
+		<div class="col-6 col-sm-6 col-md-4 col-lg-3 text-center">
+				<img class="img-fluid rounded-circle" src="{{member.image.url}}"  style="height:150px; width: 150px;  object-fit: cover; ">
+				<br>
+				<b class="p-4">{{member.full_name}}</b>
+				<p>{{member.position}}
+					<br>
+				+977 - {{ member.phone_number}}</p>
+		</div>
+		{% endfor %}
+
+		
+
+	</div>
+	<!-- end member section-->
+
+
+</div>
+
+
+
+</div>
+
+
+{% endblock %}

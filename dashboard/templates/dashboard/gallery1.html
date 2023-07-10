@@ -1,0 +1,516 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- gallery1.html  21 Nov 2019 04:04:37 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Nepal Tandukar Samaj | Gallery</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'dashboard/assets/css/app.min.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/assets/bundles/chocolat/dist/css/chocolat.css' %}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard/assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard/assets/css/components.css' %}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'dashboard/assets/css/custom.css' %}">
+  <link rel='shortcut icon' type='image/x-icon' href="{% static 'app/assets/img/tandukar-samaj-logo.png' %}" />
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+            
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+          
+          
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{% static 'dashboard/assets/img/user.png' %}"
+                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+            <div class="dropdown-menu dropdown-menu-right pullDown">
+              <div class="dropdown-title">Hello {{request.user.username}}</div>
+              
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'dashboard:logout' %}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{% url 'dashboard:index' %}"> 
+              <img src="{% static 'app/assets/img/tandukar_logo.png' %}" style="height:100%; width:100%;">
+               {% comment %} <span
+                class="logo-name text-danger ">नेपाल तण्डुकार </span> {% endcomment %}
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Main</li>
+            <li class="dropdown active">
+              <a href="{% url 'dashboard:index' %}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+            </li>
+            
+           
+            <li class="menu-header">Pages</li>
+            <li class="">
+              <a href="{% url 'dashboard:notification' %}" class="nav-link"><i data-feather="command"></i><span>Notification</span></a>
+            </li>
+            
+            <li class="">
+              <a href="{% url 'dashboard:news' %}" class="nav-link"><i data-feather="command"></i><span>News</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:events' %}"  class="nav-link"><i data-feather="command"></i><span>Events</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:press' %}"  class="nav-link"><i data-feather="command"></i><span>Press</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:executivemember' %}"  class="nav-link"><i data-feather="command"></i><span>Executive Member</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:manifesto' %}"  class="nav-link"><i data-feather="command"></i><span>Manifesto</span></a>
+            </li>
+
+
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown">
+                <i data-feather="command"></i>
+                <span>Ordinary Member</span>
+              </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url 'dashboard:verifi_member' %}">Verified Member</a></li>
+                    <li><a href="{% url 'dashboard:ordinary_member_unverifed' %}">Unverified Member</a></li>
+                  </ul>
+            </li>
+           
+
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown">
+                <i data-feather="command"></i>
+                <span>About Us</span>
+              </a>
+                  <ul class="dropdown-menu">
+                    {% for item in aboutctg %}
+                          <li><a class="dropdown-item" href="{% url  'dashboard:about' item.about_slug %}">{{ item.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+            </li>
+
+
+           
+
+            <li class="menu-header">Branch</li>
+            <li class="dropdown">
+              <a href="{% url 'dashboard:branchlist' %}"  class="nav-link"><i data-feather="home"></i><span><span>Add Branch</span></a>
+            </li>
+
+            <li class="menu-header">Media</li>
+            <li class="dropdown">
+              <a href="{% url 'dashboard:gallery' %}"  class="nav-link"><i data-feather="image"></i><span><span>Gallery</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:bannar_image' %}"  class="nav-link"><i data-feather="flag"></i><span><span>Bannar Image</span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="{% url 'dashboard:videogallery' %}"  class="nav-link"><i data-feather="play"></i><span><span>Video Gallery</span></a>
+            </li>
+
+            <li class="menu-header"> Information</li>
+            <li class="dropdown">
+              <a href="{% url 'dashboard:general_info' %}"  class="nav-link"><i data-feather="book"></i><span><span>General Information</span></a>
+            </li>
+            <li class="dropdown">
+              <a href="{% url 'dashboard:bankdetails' %}"  class="nav-link"><i data-feather="home"></i><span><span>Bank Details</span></a>
+            </li>
+            
+
+            {% comment %} <li class="menu-header">Website settings</li> {% endcomment %}
+            
+           
+
+            {% comment %} <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown">
+                <i class="fa fa-cog"></i>
+                <span>Settings</span>
+              </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="">Keywords</a></li>
+                    <li><a href="">Discription</a></li>
+                    <li><a href="">Auth</a></li>
+                  </ul>
+            </li> {% endcomment %}
+           
+          </ul>
+        </aside>
+      </div>
+
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="card">
+              <div class="card-header">
+                <h4>Gallery </h4>
+      
+                <div class="card-header-form">
+                  
+                </div>
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicModalcreate1001">
+                  <i class="fas fa-add ">Create New Album</i>
+                  </button>
+                
+              </div>
+              {% if messages %}
+              {% for msg in messages %}
+                  {% if msg.tags == 'error' %}
+                  
+      
+                  <div class="alert alert-danger alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+      
+                  {% elif msg.tags == 'warning' %}
+                  <div class="alert alert-warning alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+      
+                  {% elif msg.tags == 'info' %}
+                  <div class="alert alert-info alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+      
+      
+                  {% else %}
+                  <div class="alert alert-success alert-dismissible show fade">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>×</span>
+                      </button>
+                      {{msg.message}}
+                    </div>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+            {% endif %}
+            </div>
+            <div class="row">
+              {% for item in gallery %}
+             
+              <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card">
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#basicModal{{item.id}}">
+                      <i class="fas fa-plus "></i>
+                    </button>
+                    <a href="{% url 'dashboard:editgallery' item.img_slug %}" class="btn btn-success">
+                      <i class="fas fa-pen "></i>
+                    </a>
+
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicModaldelete{{item.id}}">
+                      <i class="fas fa-trash "></i>
+                    </button>
+                  </div>
+                  <div class="card-header">
+                   
+                    <h4>{{item.title}}</h4>
+                    <div class="card-header-form">
+            
+                    </div>
+                     
+                  </div>
+
+                  <div class="card-body">
+                    <div class="gallery gallery-md">
+                      {% for image in item.gallery.all|slice:5 %}
+                      <div class="gallery-item" data-image="{{image.image.url}}" data-title="Image 1"></div>
+                      {% endfor %}
+                      {% for item in item.gallery.all|slice:"5:6"%}
+                      <div class="gallery-item gallery-more" data-image="{{item.image.url}}"
+                        data-title="Image 12">
+                        <div>more</div>
+                      </div>
+                      {% endfor %}
+                      {% for item in item.gallery.all|slice:"6:"%}
+                      <div class="gallery-item gallery-hide" data-image="{{item.image.url}}"
+                        data-title="Image 9">
+                      </div>
+                      {% endfor %}
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+              
+              {% endfor %}
+           
+             
+            </div>
+          </div>
+        </section>
+
+
+        <!-- add modal-->
+        {% for item in gallery %}
+        <div class="modal fade" id="basicModal{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload image Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="" method="post" action="{% url 'dashboard:gallery' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{item.id}}">
+                        <div class="form-group">
+                            <div class="input-group pt-2">
+                               
+                                <input type="file" class="form-control" placeholder="image" name="image" required>
+                             </div>
+                        </div>
+                        
+                            
+                            
+                        <div class="modal-footer bg-whitesmoke br">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </form>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+
+         <!-- add new Album -->
+    <div class="modal fade" id="basicModalcreate1001" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create New Album</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="" method="post" action="{% url 'dashboard:createnewalbum' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                        <div class="input-group pt-2">
+                            <input type="text" class="form-control" placeholder="Album Name" name="albumname">
+                         </div>
+
+{% comment %}                       
+                        <div class="input-group pt-2">
+                           
+                            <input type="file" class="form-control" placeholder="image" name="image" required>
+                         </div> {% endcomment %}
+                    </div>
+                    
+                        
+                        
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+            </div>
+            
+            </div>
+        </div>
+    </div>
+
+
+        {% for item in gallery %}
+        <div class="modal fade" id="basicModaldelete{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content pt-4">
+                
+                <div class="modal-body">
+                  <form class="" method="post" action="{% url  'dashboard:deletealbum' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden"  value="{{item.id}}" name="id">
+                    <h4 class="text-danger">Are you sure for deleting these Album ?</h4>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                        
+                  
+                </div>
+                
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+
+
+
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+          <div class="settingSidebar-body ps-container ps-theme-default">
+            <div class=" fade show active">
+              <div class="setting-panel-header">Setting Panel
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Select Layout</h6>
+                <div class="selectgroup layout-color w-50">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                    <span class="selectgroup-button">Light</span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                    <span class="selectgroup-button">Dark</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Sidebar Color</h6>
+                <div class="selectgroup selectgroup-pills sidebar-color">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar" checked>
+                    <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
+                      data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Color Theme</h6>
+                <div class="theme-setting-options">
+                  <ul class="choose-theme list-unstyled mb-0">
+                    <li title="white" class="active">
+                      <div class="white"></div>
+                    </li>
+                    <li title="cyan">
+                      <div class="cyan"></div>
+                    </li>
+                    <li title="black">
+                      <div class="black"></div>
+                    </li>
+                    <li title="purple">
+                      <div class="purple"></div>
+                    </li>
+                    <li title="orange">
+                      <div class="orange"></div>
+                    </li>
+                    <li title="green">
+                      <div class="green"></div>
+                    </li>
+                    <li title="red">
+                      <div class="red"></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="mini_sidebar_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Mini Sidebar</span>
+                  </label>
+                </div>
+              </div>
+              <div class="p-15 border-bottom">
+                <div class="theme-setting-options">
+                  <label class="m-b-0">
+                    <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                      id="sticky_header_setting">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="control-label p-l-10">Sticky Header</span>
+                  </label>
+                </div>
+              </div>
+              <div class="mt-4 mb-4 p-3 align-center rt-sidebar-last-ele">
+                <a href="#" class="btn btn-icon icon-left btn-primary btn-restore-theme">
+                  <i class="fas fa-undo"></i> Restore Default
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          <a href="templateshub.net">Templateshub</a></a>
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="{% static 'dashboard/assets/js/app.min.js' %}"></script>
+  <!-- JS Libraies -->
+  <script src="{% static 'dashboard/assets/bundles/chocolat/dist/js/jquery.chocolat.min.js' %}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{% static 'dashboard/assets/js/page/gallery1.js' %}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'dashboard/assets/js/scripts.js' %}"></script>
+  <!-- Custom JS File -->
+  <script src="{% static 'dashboard/assets/js/custom.js' %}"></script>
+</body>
+
+
+<!-- gallery1.html  21 Nov 2019 04:04:45 GMT -->
+</html>

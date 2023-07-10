@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+press details
+{% endblock %}
+
+{% block content %}
+<!-- about section -->
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 pb-3 text-primary">
+            {{press_details.title}}
+        </h2>
+        <center>
+            <div class="blog-image " style=" width: auto;
+            height: 300px;
+           
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;">
+            
+            <img  src="{{press_details.image.url}}" style=" width:auto;
+            height: auto;
+            " >
+            </div>
+        </center>
+        <p class="pb-5">
+			{{press_details.discriptions|safe}}
+		</p>
+	</div>
+</div>
+<!-- end about section-->
+
+<!-- end about section -->
+
+
+
+
+
+
+{% endblock %}

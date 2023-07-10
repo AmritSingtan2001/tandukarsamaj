@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+details
+{% endblock %}
+
+{% block content %}
+<!-- about section -->
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+{% if about %}
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 pb-3 text-primary">
+          {{about.title}}
+        </h2>
+        {% if about.image %}
+        <center>
+            <div class="blog-image " style=" width: auto;
+            height: 300px;
+           
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;">
+            
+            <img  src="{{about.image.url}}" style=" width:350px;
+            height: auto;
+            object-fit: cover;" >
+            </div>
+        </center>
+        {% endif %}
+        <p class="pb-5">
+			{{about.discription|safe}}
+		</p>
+	</div>
+</div>
+<!-- end about section-->
+{% else %}
+<div class="container">
+    <div class="row pt-5">
+        <center><h4 class="text-danger">No data available</h4></center>
+    </div>
+</div>
+
+{% endif %}
+
+<!-- end about section -->
+
+
+
+
+
+
+{% endblock %}

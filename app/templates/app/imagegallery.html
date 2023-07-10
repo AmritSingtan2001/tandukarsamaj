@@ -1,0 +1,59 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Gallery
+{% endblock %}
+{% block content %}
+<!-- gallery section -->
+<!-- gallery bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--gallery image   section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center p-5 text-primary">Image Gallery</h2>
+		
+	</div>
+	<div class="row">
+		{% for item in gallery %}
+		<div class="col-12 col-sm-12 col-md-6 col-lg-4 pb-4">
+			 <a href="{% url 'gallery-details'  item.img_slug %}">
+				<div class="card" style="width: 100%; border: none;">
+					
+				  <div class="card-body">
+				  	<div class="photo-counts">
+					    {{item.gallery.count}} Photos
+					  </div>
+
+					  
+					   	<h5 class="card-buttom-text p-4 " style="">
+				    	{{item.title}}
+				    </h5>
+				    
+				    <img src="{{item.gallery.first.image.url}}" style="width:100%; height: 320px; object-fit:cover;" class="card-img-top" alt="...">
+
+				   
+
+				  </div>
+				</div>
+				</a>
+		</div>
+		{% endfor %}
+
+
+
+	</div>
+</div>
+<!-- end gallery image section-->
+
+<!-- end gallery section -->
+
+
+{% endblock %}

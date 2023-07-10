@@ -1,0 +1,82 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block title %}
+Event
+{% endblock %}
+{% block content %}
+
+<!-- table start-->
+<div class="main-content">
+  <section class="section">
+    <div class="section-body">
+     
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Press Table</h4>
+              
+              <div class="card-header-form">
+                
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                      <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="btn btn-warning"><a href="{% url 'dashboard:create_press' %}" class="text-white" style="text-decoration:none;">Create</a></div>
+
+            </div>
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tr>
+                    <th class="text-center">
+                      S.N
+                    </th>
+                    <th>Title </th>
+                    <th>Image</th>
+                    <th>Create Date</th>
+                    <th>Action</th>
+                  </tr>
+                  {% for item in presses %}
+                  <tr class="pt-4">
+                    <td class="p-0 text-center">
+                      {{item.id}}
+                    </td>
+                    <td>{{item.title}}</td>
+                    
+                    <td>
+                      <img alt="image" src="{{item.image.url}}" class="" width="35"
+                        data-toggle="tooltip" title="Wildan Ahdian">
+                    </td>
+                    <td >{{item.create_date}}</td>
+                   
+                    <td>
+                      <a href="{% url 'dashboard:viewpress' item.press_slug %}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                      <a href="{% url  'dashboard:updatepress' item.press_slug %}" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                      <a href="{% url  'dashboard:deltepress' item.press_slug  %}" class="btn btn-danger"><i class="fas fa-trash "></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
+</div>
+<!-- end table-->
+
+
+
+{% endblock %}

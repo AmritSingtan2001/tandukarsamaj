@@ -1,0 +1,52 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+News details
+{% endblock %}
+
+{% block content %}
+<!-- about section -->
+<!-- about bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--about detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 pb-3 text-primary">
+            {{news.title}}
+        </h2>
+        <center>
+            <div class="blog-image " style=" width: auto;
+            height: 300px;
+           
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;">
+            
+            <img  src="{{news.image.url}}" style=" width:350px;
+            height: auto;
+            object-fit: cover;" >
+            </div>
+        </center>
+        <p class="pb-5">
+			{{news.discriptions|safe}}
+		</p>
+	</div>
+</div>
+<!-- end about section-->
+
+<!-- end about section -->
+
+
+
+
+
+
+{% endblock %}

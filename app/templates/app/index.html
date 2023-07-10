@@ -1,0 +1,191 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+Home 
+{% endblock %}
+
+{% block content %}
+{% comment %} {% blocktrans %} {% endcomment %}
+<div class="container-fluid" >
+	<img class="d-block w-100 bannarimage "
+	src="{{bannarimage.image.url}}" style="inset: 0;" >
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 pt-4 mt-sm-5 my-5 px-0">
+				<h2 class="text-primary ant-typography text-primary" style="font-weight:bold;">Welcome to Nepal Tandukar Samaj</h2>
+				<div class="pt-0">
+					<p>
+						In the long history of Nepal, the system has changed a lot but the situation has not changed, and we have come to change the situation in a positive direction as people feel it.
+					</p>
+				</div>
+			</div>
+
+
+			<div class="col-lg-6  alert alert-danger alert-dismissable fade show elements justify-content-center  bg-primary text-white border-rounded">
+				<button type="button" class="btn btn-danger float-end" data-bs-dismiss="alert" aria-label="Close">Close</button>
+				
+				<p class="text-primary ant-typography text-white" style="font-weight:bold; text-color:white;  ">
+				{{notice.notic|safe}}
+				</p>
+
+				
+			
+				<div class=" d-flex justify-content-center pt-3">
+						<div class="d-block d-md-none small-button">
+							<center>
+							<div class="btn btn111 bg-white  text-primary"  >
+								
+								<a href="{% url 'manifeston' %}" style=" text-decoration:none; ">
+									
+									Manifesto
+									
+								</a>
+							</div>		
+					
+						
+							<div class="btn btn111  text-white" style=" border-color: white; color:white;">
+								<a href="{% url 'registration' %}" style=" text-decoration:none; color:white;">
+								Become a Member
+								</a>
+							</div>
+						</center>
+						</div>
+
+					<div class="d-none d-sm-block">
+						<div class="btn btn111 bg-white  text-primary p-md-2 ps-md-5 pe-md-5"  style="">
+							
+							<i class="bi bi-journals "></i> 
+							<a href="{% url 'manifeston' %}" style=" text-decoration:none;">Manifesto</a>
+						</div>		
+				
+					
+						<div class="btn btn111  text-white ms-md-2 p-md-2 ps-md-3 pe-md-3" style=" border-color: white; color:white;">
+							<i class="bi bi-person text-white "></i> 
+							<a href="{% url 'registration' %}" style=" text-decoration:none; color:white;">
+								Become a Member
+							</a>
+						</div>
+					</div>
+				
+				</div>		
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<!-- new section start -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-md-6">
+			<div class="row">
+				<div class="col col-sm-6">
+					<h4>News Update</h4>
+				</div>
+				<div class="col col-sm-6 ">
+					<h6 class="float-end pe-5">
+						<a href="#" style="text-decoration:none;">See All ></a>
+					</h6>
+				</div>
+			</div>
+			<div class="row d-flex">
+				{% for item in news %}
+				<div class="col-md-6">
+					<div class="row pt-2">
+						<div class="col col-sm-5">
+							<img src="{{item.image.url}}" width="100%" height="150px" style=" object-fit: cover; ">
+				
+						</div>
+						<div class="col col-sm-7">
+							<h6><a href="{% url 'news-details' item.news_slug %}" style="text-decoration: none; font-weight:bold;">{{item.title|truncatechars:50}}</a></h6>
+							<br>
+							<small>{{item.created_date}}</small>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-md-6">
+			<h4>Notice</h4>
+			<br>
+			{% for item in singlepress %}
+			<img src="{{item.image.url}}" class="img-fluid" style="height:300px; width:100% object-fit: cover;">
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
+
+<!-- end new section-->
+
+
+<!-- press section start -->
+<br>
+<div class="container-fluid  pt-3 pb-2" style="background-color:#f3fbff ;">
+	<div class="container">
+		<div class="row">
+			<div class="d-flex justify-content-between ">
+				<h4>Report</h4>
+				<h6 class="float-end"><a href="" style="text-decoration:none;  object-fit: cover;">See All > </a> </h6>
+			</div>
+		</div>
+		<div class="row">
+			{% for item in press %}
+			<div class="col-sm-6 col-md-2 col-6">
+				<img src="{{item.image.url}}" style="height:250px; width: 100%;">
+				<br>
+				<br>
+				<a href="{% url 'press-details' item.press_slug  %}" class="text-dark" style="text-decoration:none; font-weight:bold;"> {{item.title|truncatechars:30}}</a>
+				<br>
+				{{item.create_date}}
+			</div>
+			{% endfor %}
+
+			
+		</div>
+		
+	</div>
+</div>
+<!--- end press section -->
+
+
+
+<!-- program section start -->
+<div class="container mt-5">
+	<div class="row">
+		<div class="d-flex justify-content-between">
+			<h4>Event</h4>
+			<h6>
+				<a href="" style="text-decoration:none;">See all > </a>
+			</h6>
+		</div>
+	</div>
+	<div class="row pt-3">
+		{% for event in events %}
+		
+		<div class=" col-6 col-sm-6 col-md-3 col-lg-3">
+			<img src="{{event.image.url}}" style=" height: 200px; width: 100%;  object-fit: cover;">
+			<br>
+			<br>
+			<h6>
+				<a href="{% url 'event-details' event.event_slug %}" style=" text-decoration: none;">
+				{{ event.title|truncatechars:50 }}
+				</a>
+			</h6>
+		</div>
+		
+		{% endfor %}
+
+		
+
+
+	</div>
+</div>
+<!-- end program section -->
+{% comment %} {% endblocktrans %} {% endcomment %}
+{% endblock %}
+

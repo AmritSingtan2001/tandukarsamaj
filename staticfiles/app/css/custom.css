@@ -1,0 +1,387 @@
+.scrolling{
+overflow:scroll;
+height:100px;
+}
+
+
+.photo-counts{
+	position: absolute;
+    height: 35px;
+    z-index: 999;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    font-size: 12px;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;"
+}
+.card-buttom-text{
+	margin-bottom: 10px;
+    color: rgba(0,0,0,.85);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    position: absolute;
+    display: block;
+    margin-top: 250px;
+    color:white;
+    
+
+}
+
+
+
+
+
+.item{
+    transition: .3s ease-in-out;
+}
+.item:hover{
+    filter: brightness(80%);
+}
+.item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.elements{
+    width: 550px;
+    height: 380px;
+    border-radius: 16px;
+    position: absolute;
+    top: 250px;
+    right: 130px;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 40px;
+    padding-top: 10px;
+    
+
+}
+.blog-content{
+    border: 1px solid #c9c9c9;
+    height: 300px;
+    align-items: center;
+    
+}
+
+.blog-content img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+/*media query*/
+
+
+
+@media only screen and (min-width:900px) and (max-width:1400px) {
+    .elements{
+    width: 40%;
+    height: auto;
+    border-radius: 16px;
+    position: absolute;
+    top: 10%;
+    right: 9%;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 35px;
+    padding: 3%;
+    align-items: center;
+    
+
+    } 
+    .abcd{
+        overflow: hidden;
+        -webkit-backgroun-size:cover;
+        background-size: cover;
+        background-position: center center;
+    
+    
+    }
+    #album{
+        overflow: hidden;
+       margin:  auto;
+       width: 100%;
+       height: 500px;
+       
+    }
+    .bannarimage{
+        height: 350px;
+        object-fit: cover;
+    }
+}
+
+
+
+
+@media only screen and (min-width:800px) and (max-width:1100px) {
+   .elements{
+    width: 80%;
+    height: auto;
+    border-radius: 16px;
+    position: absolute;
+    top: 9%;
+    right: 10%;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 30px;
+    padding: 4%;
+    flex:1;
+
+    } 
+     .btn111{
+        justify-content: center;
+        height: auto;
+        width: auto;
+        align-items: center;
+        font-size: 15px;
+        padding: 2px;
+        margin-top: 20px;
+
+    }
+
+    .bannarimage{
+        height: 350px;
+        object-fit: cover;
+    }
+    .blog-image{
+        width: auto;
+        height: 300px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .blog-image img{
+        width: auto;
+        height: auto;
+        object-fit: cover;
+    }
+    .abcd{
+        overflow: hidden;
+        -webkit-backgroun-size:cover;
+        background-size: cover;
+        background-position: center center;
+    
+    
+    }
+    #album{
+        overflow: hidden;
+       margin:  auto;
+       width: 100%;
+       height: 500px;
+       
+    }
+}
+
+
+
+/* @media only screen and (min-width:500px) and (max-width:899px) {
+   .elements{
+    width: 450px;
+    height: 320px;
+    border-radius: 16px;
+    position: absolute;
+    top: 170px;
+    right: 50px;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 25px;
+    padding: 0px;
+    flex:1;
+
+    } 
+     .btn111{
+        justify-content: center;
+        height: 30px;
+        width: 250px;
+        align-items: center;
+        font-size: 15px;
+        padding: 2px;
+        margin-top: 2px;
+
+    }
+
+    .bannarimage{
+        height: 350px;
+        object-fit: cover;
+    }
+    .abcd{
+        overflow: hidden;
+        -webkit-backgroun-size:cover;
+        background-size: cover;
+        background-position: center center;
+    
+    
+    }
+    #album{
+        overflow: hidden;
+       margin:  auto;
+       width: 100%;
+       height: 500px;
+       
+    }
+} */
+
+
+
+@media only screen and (min-width:500px) and (max-width:799px) {
+   .elements{
+    width: 75%;
+    height: auto;
+    border-radius: 16px;
+    position: absolute;
+    top: 4%;
+    right: 15%;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 5%;
+    flex: 1;
+
+    } 
+     .btn111{
+        justify-content: center;
+        height: auto;
+        width: 204px;
+        align-items: center;
+        font-size: 15px;
+        padding: 2%;
+        margin-top: 2px;
+
+    }
+
+    .bannarimage{
+        height: 300px;
+        object-fit: cover;
+    }
+    .abcd{
+        overflow: hidden;
+        -webkit-backgroun-size:cover;
+        background-size: cover;
+        background-position: center center;
+    
+    
+    }
+    #album{
+        overflow: hidden;
+       margin:  auto;
+       width: 100%;
+       height: 500px;
+       
+    }
+}
+
+
+
+
+@media screen and (max-width: 499px) {
+    .elements{
+    width: 75%;
+    height: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: 3%;
+    right: 13%;
+    z-index: 999;
+    background-color: #fff;
+    align-items: center;
+    overflow: hidden;
+    font-size: 20px;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    justify-content: ceter;
+    padding: 7%;
+    
+
+    }
+   
+    .btn111{
+        justify-content: center;
+        height: 30px;
+        width: 200px;
+        align-items: center;
+        font-size: 15px;
+        padding: 2px;
+        margin-top: 2px;
+
+    }
+    .small-button{
+        justify-content: center;
+        align-items: center;
+    }
+    .bannarimage{
+        height: 260px;
+        object-fit: cover;
+    }
+    .abcd{
+        overflow: hidden;
+        -webkit-backgroun-size:cover;
+        background-size: cover;
+        background-position: center center;
+    
+    
+    }
+    #album{
+        overflow: hidden;
+       padding:3;
+       width: auto;
+       height: auto;
+       
+    }
+    
+    
+ }
+
+
+
+
+
+ .bg-image-overlay {
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+.bg-image-overlay::before {
+    content: "";
+    position: absolute;
+    top: 450px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: none; /* Adjust the opacity as needed */
+    z-index: -1;
+}
+.my-element{
+    top:550px;
+    padding: 50px;
+    left: 50;
+    border-radius: 16px;
+}
+
+/*css*/

@@ -1,0 +1,220 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+News
+{% endblock %}
+{% block content %}
+<!-- news bannar section-->
+<div class="container-fluid" style="background-image:url('{{bannar_image.image.url}}'); width:100%">
+	<div class="container">
+		<div class="p-5"></div>
+	</div>
+</div>
+<!-- end bannar section -->
+
+
+<!--news detail section start-->
+<div class="container">
+	<div class="row">
+		<h2 style="font-weight: ;" class=" text-center pt-5 pb-3 text-primary">Notice and News</h2>
+
+
+		<ul class="nav nav-pills mb-3" id="pills-tab justify-content-between" role="tablist">
+		  <li class="nav-item ps-5" role="presentation">
+		    <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button " role="tab" aria-controls="pills-home" aria-selected="true" style="background-color:none; border-color:black;">News Update</button>
+		  </li>
+		  <li class="nav-item ps-5" role="presentation">
+		    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="background-color:none; border-color:black;">Press</button>
+		  </li>
+		  
+		</ul>
+		<div class="tab-content p-3" id="pills-tabContent">
+		  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"  			tabindex="0">
+		  	
+			{% for news in firstnews %}
+		  	<div class="row">
+		  			<div class="col-6 col-sm-6 col-md-6 col-lg-6 blog-content">
+		  				<img src="{{news.image.url}}" class="img-fluid">
+		  		
+		  			</div>
+
+		  		<div class="col-6 col-sm-6 col-md-6 col-lg-6 ps-3 ">
+		  			<a href="{% url 'news-details' news.news_slug %}" class="fs-4 pt-4" style="text-decoration: none; font-weight: bold;">
+		  				{{news.title}}
+		  			</a>
+		  			<br>
+		  			<br>
+		  			<small class="">
+		  				{{news.discriptions|safe|truncatewords:20}}
+		  			</small>
+		  		</div>
+		  	</div>
+			{% endfor %}
+
+		  	<!--news section-->
+		  	<div class="row pt-5">
+				{% for item in news %}
+		  		<div class="col-md-6 pt-3">
+					<div class="row pt-2">
+						<div class="col col-sm-5">
+							<img src="{{item.image.url}}" width="100%" height="150px" style=" border: 1px solid #c9c9c9; object-fit: cover;">
+				
+						</div>
+						<div class="col col-sm-7">
+							<h6><a href="{% url 'news-details' item.news_slug %}" style="text-decoration: none;">{{item.title|truncatechars:30}}</a></h6>
+							<br>
+							<small>{{item.created_date}}</small>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				
+
+		  	</div>
+
+
+		  	<!-- last section-->
+			{% for item in lastnews %}
+		  	<div class="row pt-5">
+		  			<div class="col-12 col-sm-6 col-md-6 col-lg-6 blog-content">
+		  				<img src="{{item.image.url}}" class="img-fluid">
+		  		
+		  			</div>
+
+		  		<div class="col-12 col-sm-6 col-md-6 col-lg-6 ps-3 pt-2">
+		  			<a href="{% url 'news-details' item.news_slug %}" class="fs-4 " style="text-decoration: none; font-weight: bold;">
+		  				{{item.title}}
+		  			</a>
+		  			<br>
+		  			<br>
+		  			<small class="">
+		  				{{item.discriptions|safe|truncatechars:600}}
+		  			</small>
+					<div class="btn btn-primary text-white float-end">
+						<a href="" class="text-white" style="text-decoration:none;">Read more</a>
+					</div>
+		  		</div>
+		  	</div>
+			{% endfor %}
+		  	<!-- end section-->
+
+			
+
+		  	<div class="row float-end">
+		  		<div class=" pt-5">
+					<nav aria-label="...">
+						{% if is_paginated %}
+					  <ul class="pagination">
+						{% if page_obj.has_previous %}
+					    <li class="page-item">
+					      <span>
+							<a  href="?page={{ page_obj.previous_page_number }}">
+					      	<i class=" pe-2  bi bi-arrow-left"></i>
+							</a>
+					      </span>
+					    </li>
+						{% endif %}
+
+
+					   
+						<li class="page-item">
+							<span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+						</li>
+						{% if page_obj.has_next %}
+					    <li >
+							<a  href="?page={{ page_obj.next_page_number }}">
+					      	<i class="ps-2 bi bi-arrow-right"></i>
+							</a>
+					    </li>
+						{% endif %}
+					  </ul>
+					  {% endif %}
+					</nav>
+				</div>
+		  	</div>
+			 
+		  	<!-- end news section-->
+			</div>
+
+
+		  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+		  	{% for press in firstpress %}
+			<div class="row">
+		  			<div class="col-6 col-sm-6 col-md-6 col-lg-6 blog-content">
+		  				<img src="{{press.image.url}}" class="img-fluid">
+		  		
+		  			</div>
+
+		  		<div class="col-6 col-sm-6 col-md-6 col-lg-6 ps-3 pt-2">
+		  			<a href="{% url 'press-details' press.press_slug %}" class="fs-4 " style="text-decoration: none; font-weight: bold;">
+		  				{{press.title}}
+		  			</a>
+		  			<br>
+		  			<br>
+		  			<small class="">
+		  				{{press.discriptions|safe|truncatewords:20}}
+		  			</small>
+		  		</div>
+		  	</div>
+			{% endfor %}
+
+		  	<!--news section-->
+		  	<div class="row pt-5">
+				{% for item in press %}
+		  		<div class="col-md-6 pt-3">
+					<div class="row pt-2">
+						<div class="col col-sm-5">
+							<img src="{{item.image.url}}" width="100%" height="150px" style=" border: 1px solid #c9c9c9; object-fit: cover;">
+				
+						</div>
+						<div class="col col-sm-7">
+							<h6><a href="{% url 'press-details' item.press_slug %}" style="text-decoration: none;">{{item.title|truncatechars:50}}</a></h6>
+							<br>
+							<small>{{item.create_date}}</small>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+
+		  	</div>
+
+
+		  	<!-- last section-->
+			{% for item in lastpress %}
+		  	<div class="row pt-5">
+				<div class="col-12 col-sm-12 col-md-6 col-lg-6 blog-content">
+					<img src="{{item.image.url}}" class="img-fluid">
+			
+				</div>
+
+		  		<div class="col-12 col-sm-12 col-md-6 col-lg-6 ps-3 pt-2">
+		  			<a href="{% url 'press-details' item.press_slug %}" class="fs-4 " style="text-decoration: none; font-weight: bold;">
+		  				{{item.title|truncatechars:40}}
+		  			</a>
+		  			<br>
+		  			<br>
+		  			<small class="">
+		  				{{item.discriptions|safe|truncatechars:500}}
+		  			</small>
+		  		</div>
+		  	</div>
+			{% endfor %}
+		  	<!-- end section-->
+
+		  	
+		  	<!-- end news section-->
+		  </div>
+		  
+		</div>
+		
+	</div>
+
+	
+
+</div>
+
+
+<!-- end news section-->
+
+{% endblock%}
